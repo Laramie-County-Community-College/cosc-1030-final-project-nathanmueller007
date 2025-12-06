@@ -44,6 +44,39 @@ def simulate_endgame(trials=num_trials):
             else: 
                 points_three += 0
 
+        ft_made = sum(1 for _ in range(2) if random.random() < opponent_free_throw_percent)
+
+        if ft_made == 0:
+            # Opponent misses both chances to score
+
+            if random.random() < three_point_percentage:
+                wins_foul += 1
+                points_foul += 3
+            else:
+                if random.random() < offensive_rebound_prob:
+                    if random.random() < two_point_percentage:
+                        if random.random() < overtime_win_prob:
+                            wins_foul += 1 
+                        points_foul += 2
+                    else: 
+                        points_foul += 0
+                else:
+                    points_foul += 0   
+        elif ft_made == 1:
+            if random.random() < three_point_percentage:
+                if random.random() < overtime_win_prob:
+                    wins_foul += 1
+                else:
+                    points_foul += 3
+            else:
+                points_foul += 0
+        else:
+            # opp makes both- need 3 to tie
+            if random.random() < three_point_percentage:
+                wins_foul += 3
+            else:
+                points_foul += 0                        
+
 
 
 
