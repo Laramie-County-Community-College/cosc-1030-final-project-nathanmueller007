@@ -75,7 +75,26 @@ def simulate_endgame(trials=num_trials):
             if random.random() < three_point_percentage:
                 wins_foul += 3
             else:
-                points_foul += 0                        
+                points_foul += 0   
+
+    #results
+    results_text = (
+        "== Simulation Results==\n"
+        f"Trials: {trials}\n\n"
+        "Strategy A: Take 3-pointer\n"
+        f"Win % {wins_three / trials * 100:.2f}%\n"
+        f"Avg Points: {points_three / trials:.2f}\n\n"
+        "Strategy B: Foul Opponent \n"
+        f"win %: {wins_foul / trials * 100:.2f}%\n"
+        f"Avg points: {points_foul / trials:.2f}\n" 
+    )
+    #write results in text file
+    f = open("BasketBall_Information.txt", "w")
+    f.write(results_text)
+    f.close()
+
+    print(results_text) 
+simulate_endgame()                                   
 
 
 
